@@ -1,24 +1,30 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using TheGame.Managers;
+using TheGame.Scene;
 
 namespace TheGame.Core
 {
-    public class Game1 : Game
+    public class MainGame : Game
     {
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
 
-        public Game1()
+        private SceneManager gsm;
+
+        public MainGame()
         {
             _graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
+            _graphics.PreferredBackBufferWidth = Data.ScreenWidth;
+            _graphics.PreferredBackBufferHeight = Data.ScreenHeight;
         }
 
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
+            gsm = new();
 
             base.Initialize();
         }
@@ -27,7 +33,7 @@ namespace TheGame.Core
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            // TODO: use this.Content to load your game content here
+            gsm.LoadContent(Content);
         }
 
         protected override void Update(GameTime gameTime)
@@ -35,7 +41,7 @@ namespace TheGame.Core
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            // TODO: Add your update logic here
+            gsm.Update(gameTime);
 
             base.Update(gameTime);
         }
@@ -44,7 +50,9 @@ namespace TheGame.Core
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            // TODO: Add your drawing code here
+            _spriteBatch.Begin();
+            gsm.Draw(_spriteBatch);
+            _spriteBatch.End();
 
             base.Draw(gameTime);
         }

@@ -7,7 +7,7 @@ namespace TheGame
         [STAThread]
         static void Main()
         {
-            using var game = new TheGame.Core.Game1();
+            using var game = new TheGame.Core.MainGame();
             game.Run();
         }
     }
