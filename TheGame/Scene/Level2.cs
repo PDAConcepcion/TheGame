@@ -18,8 +18,8 @@ namespace TheGame.Scene
         internal override void LoadContent(ContentManager content)
         {
             Texture2D level2_B = content.Load<Texture2D>("Level2_Background");
-            Rectangle level2_BSR = new(0, 0, level2_B.Width, level2_B.Height);
             Rectangle level2_BDR = new(0, 0, Data.ScreenWidth, Data.ScreenHeight);
+            Rectangle level2_BSR = new(0, 0, level2_B.Width, level2_B.Height);
 
             level2[0] = new(
                 level2_B,
@@ -29,8 +29,8 @@ namespace TheGame.Scene
                 );
 
             Texture2D level2_T = content.Load<Texture2D>("Level2_Tiles");
-            Rectangle level2_TSR = new(0, 0, level2_T.Width, level2_T.Height);
             Rectangle level2_TDR = new(0, 0, Data.ScreenWidth, Data.ScreenHeight);
+            Rectangle level2_TSR = new(0, 0, level2_T.Width, level2_T.Height);
 
             level2[1] = new(
                 level2_T,
@@ -40,8 +40,8 @@ namespace TheGame.Scene
                 );
 
             Texture2D level2_O = content.Load<Texture2D>("Level2_Object");
-            Rectangle level2_OSR = new(0, 0, level2_O.Width, level2_O.Height);
             Rectangle level2_ODR = new(0, 0, Data.ScreenWidth, Data.ScreenHeight);
+            Rectangle level2_OSR = new(0, 0, level2_O.Width, level2_O.Height);
 
             level2[2] = new(
                 level2_O,
