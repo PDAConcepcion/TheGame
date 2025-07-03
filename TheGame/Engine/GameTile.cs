@@ -16,22 +16,24 @@ namespace TheGame.Engine
         //texture of the tile
         private Texture2D tileTexture;
         private Rectangle source;
+        private Rectangle display;
         private Color color;
 
         private Rectangle[] tiles;
-        private Rectangle display;
         private Point position;
         private Point direction;
         private int repeatNumber;
+        private bool isSolid;
 
-        public GameTile(Texture2D tileTexture, Color color, Point position, Point direction, int repeatNumber)
+        public GameTile(Texture2D tileTexture, Color color, Point position, Point direction, int repeatNumber, bool IsSolid = true)
         {
             this.tileTexture = tileTexture;
             this.source = new Rectangle(0, 0, tileTexture.Width, tileTexture.Height);
             this.color = color;
             this.position = position;
             this.repeatNumber = repeatNumber;
-            this.tiles = CreateTileV1(position, direction, repeatNumber);
+            this.isSolid = IsSolid;
+            this.tiles = CreateTile(position, direction, repeatNumber);
         }
 
         public Texture2D TileTexture
@@ -43,9 +45,9 @@ namespace TheGame.Engine
             get { return source; }
         }
 
-        public Rectangle Display
+        public Rectangle[] Tiles
         {
-            get { return display; }
+            get { return tiles; }
         }
 
         public Color Color
@@ -53,7 +55,7 @@ namespace TheGame.Engine
             get { return color; }
         }
 
-        public Rectangle[] CreateTileV1(Point position, Point direction, int repeat = 0)
+        public Rectangle[] CreateTile(Point position, Point direction, int repeat = 0)
         {
             Rectangle[] tiles = new Rectangle[repeat];
             for (int x = 0; x < (Data.ScreenWidth / Data.DisplayTileSize); x++)
@@ -72,6 +74,11 @@ namespace TheGame.Engine
             return tiles;
         }
 
+        public Rectangle TileGrouped(Rectangle[] Tile, Rectangle display)
+        {
+            return display;
+        }
+
         public void Draw(SpriteBatch spriteBatch)
         {
 
@@ -86,6 +93,14 @@ namespace TheGame.Engine
             }
 
         }
+
+        //internal void DrawRectHollow(SpriteBatch spriteBatch, Texture2D debugpixel, Rectangle rect, int thickness)
+        //{
+        //    spriteBatch.Draw(debugpixel, new Rectangle(rect.X, rect.Y, rect.Width, thickness), Color.Red);
+        //    spriteBatch.Draw(debugpixel, new Rectangle(rect.X, rect.Y + rect.Height - thickness, rect.Width, thickness), Color.Red);
+        //    spriteBatch.Draw(debugpixel, new Rectangle(rect.X, rect.Y, thickness, rect.Height), Color.Red);
+        //    spriteBatch.Draw(debugpixel, new Rectangle(rect.X + rect.Width - thickness, rect.Y, thickness, rect.Height), Color.Red);
+        //}
     }
 }
 

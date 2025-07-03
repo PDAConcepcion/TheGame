@@ -15,8 +15,7 @@ namespace TheGame.Scene
     {
 
         MapTexture[] level1 = new MapTexture[3];
-        Rectangle[] invTileRects;
-        GameTile[] invTile;
+        GameTile[] invTile = new GameTile[15];
 
 
         internal override void LoadContent(ContentManager content)
@@ -26,9 +25,9 @@ namespace TheGame.Scene
             Rectangle level1_BSR = new(0, 0, level1_B.Width, level1_B.Height);
 
             level1[0] = new(
-                level1_B, 
+                level1_B,
                 level1_BDR,
-                level1_BSR, 
+                level1_BSR,
                 Data.ColorWhite
                 );
 
@@ -53,34 +52,42 @@ namespace TheGame.Scene
                 level1_OSR,
                 Data.ColorWhite
                 );
-             
 
-            invTile[0] = new GameTile(content.Load<Texture2D>("InvisibleTile"), Data.ColorWhite, new(1, 0), new(1, 0), 29);
-            invTile[1] = new GameTile(content.Load<Texture2D>("InvisibleTile"), Data.ColorWhite, new(0, 0), new(1, 0), 5);
-
-            
-
-
+            invTile[0] = new GameTile(content.Load<Texture2D>("InvisibleTile"), Data.ColorWhite, new(0, 0), new(1, 0), 30);
+            invTile[1] = new GameTile(content.Load<Texture2D>("InvisibleTile"), Data.ColorWhite, new(0, 1), new(0, 1), 19);
+            invTile[2] = new GameTile(content.Load<Texture2D>("InvisibleTile"), Data.ColorWhite, new(29, 1), new(0, 1), 19);
+            invTile[3] = new GameTile(content.Load<Texture2D>("InvisibleTile"), Data.ColorWhite, new(1, 14), new(1, 0), 13);
+            invTile[4] = new GameTile(content.Load<Texture2D>("InvisibleTile"), Data.ColorWhite, new(13, 15), new(0, 1), 5);
+            invTile[5] = new GameTile(content.Load<Texture2D>("InvisibleTile"), Data.ColorWhite, new(20, 11), new(1, 0), 9);
+            invTile[6] = new GameTile(content.Load<Texture2D>("InvisibleTile"), Data.ColorWhite, new(20, 12), new(0, 1), 8);
+            invTile[7] = new GameTile(content.Load<Texture2D>("InvisibleTile"), Data.ColorWhite, new(26, 8), new(1, 0), 3);
+            invTile[8] = new GameTile(content.Load<Texture2D>("InvisibleTile"), Data.ColorWhite, new(20, 5), new(1, 0), 5);
+            invTile[9] = new GameTile(content.Load<Texture2D>("InvisibleTile"), Data.ColorWhite, new(1, 3), new(1, 0), 3);
+            invTile[10] = new GameTile(content.Load<Texture2D>("InvisibleTile"), Data.ColorWhite, new(4, 4), new(1, 0), 2);
+            invTile[11] = new GameTile(content.Load<Texture2D>("InvisibleTile"), Data.ColorWhite, new(6, 5), new(1, 0), 8);
+            invTile[12] = new GameTile(content.Load<Texture2D>("InvisibleTile"), Data.ColorWhite, new(1, 4), new(1, 0), 3);
+            invTile[13] = new GameTile(content.Load<Texture2D>("InvisibleTile"), Data.ColorWhite, new(3, 5), new(1, 0), 3);
+            invTile[14] = new GameTile(content.Load<Texture2D>("InvisibleTile"), Data.ColorWhite, new(5, 6), new(1, 0), 9);
         }
 
         internal override void Update(GameTime gameTime)
         {
-            
+
         }
 
-      
+
         internal override void Draw(SpriteBatch spriteBatch)
-        {   
+        {
             spriteBatch.Draw(level1[0].Texture, level1[0].Display, level1[0].Source, level1[0].Color); // background
-            
+
             spriteBatch.Draw(level1[1].Texture, level1[1].Display, level1[1].Source, level1[1].Color); // Tile
 
             #region TILES
-            invTile[0].Draw(spriteBatch);
-            invTile[1].Draw(spriteBatch);
-
+            for (int i = 0; i < invTile.Length; i++)
+            {
+                invTile[i].Draw(spriteBatch);
+            }
             #endregion
-
 
             spriteBatch.Draw(level1[2].Texture, level1[2].Display, level1[2].Source, level1[2].Color); //object
 
